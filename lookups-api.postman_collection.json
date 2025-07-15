@@ -1,0 +1,651 @@
+{
+  "info": {
+    "name": "Topcoder Lookups API",
+    "description": "Complete API collection for the modernized Topcoder Lookups API with NestJS, TypeScript, Prisma, and PostgreSQL",
+    "version": "1.0.0",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{jwt_token}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "http://localhost:8000",
+      "type": "string"
+    },
+    {
+      "key": "api_prefix",
+      "value": "/api/v1",
+      "type": "string"
+    },
+    {
+      "key": "jwt_token",
+      "value": "",
+      "type": "string"
+    }
+  ],
+  "item": [
+    {
+      "name": "Countries",
+      "item": [
+        {
+          "name": "Get All Countries",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}{{api_prefix}}/countries?skip=0&take=20&orderBy=name&orderDirection=asc",
+              "host": ["{{base_url}}"],
+              "path": ["{{api_prefix}}", "countries"],
+              "query": [
+                {
+                  "key": "skip",
+                  "value": "0",
+                  "description": "Number of records to skip"
+                },
+                {
+                  "key": "take",
+                  "value": "20",
+                  "description": "Number of records to take"
+                },
+                {
+                  "key": "search",
+                  "value": "",
+                  "description": "Search term",
+                  "disabled": true
+                },
+                {
+                  "key": "orderBy",
+                  "value": "name",
+                  "description": "Field to order by"
+                },
+                {
+                  "key": "orderDirection",
+                  "value": "asc",
+                  "description": "Order direction (asc/desc)"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Country by ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}{{api_prefix}}/countries/{{country_id}}",
+              "host": ["{{base_url}}"],
+              "path": ["{{api_prefix}}", "countries", "{{country_id}}"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Country by Code",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}{{api_prefix}}/countries/code/US",
+              "host": ["{{base_url}}"],
+              "path": ["{{api_prefix}}", "countries", "code", "US"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Create Country (Admin)",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{jwt_token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Test Country\",\n  \"countryCode\": \"TC\",\n  \"countryFlag\": \"🧪\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}{{api_prefix}}/countries",
+              "host": ["{{base_url}}"],
+              "path": ["{{api_prefix}}", "countries"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Update Country (Admin)",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{jwt_token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Updated Country Name\",\n  \"countryFlag\": \"🆕\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}{{api_prefix}}/countries/{{country_id}}",
+              "host": ["{{base_url}}"],
+              "path": ["{{api_prefix}}", "countries", "{{country_id}}"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Delete Country (Admin)",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{jwt_token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}{{api_prefix}}/countries/{{country_id}}",
+              "host": ["{{base_url}}"],
+              "path": ["{{api_prefix}}", "countries", "{{country_id}}"]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Educational Institutions",
+      "item": [
+        {
+          "name": "Get All Educational Institutions",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}{{api_prefix}}/educational-institutions?skip=0&take=20&orderBy=name&orderDirection=asc",
+              "host": ["{{base_url}}"],
+              "path": ["{{api_prefix}}", "educational-institutions"],
+              "query": [
+                {
+                  "key": "skip",
+                  "value": "0",
+                  "description": "Number of records to skip"
+                },
+                {
+                  "key": "take",
+                  "value": "20",
+                  "description": "Number of records to take"
+                },
+                {
+                  "key": "search",
+                  "value": "",
+                  "description": "Search term",
+                  "disabled": true
+                },
+                {
+                  "key": "countryId",
+                  "value": "",
+                  "description": "Filter by country ID",
+                  "disabled": true
+                },
+                {
+                  "key": "state",
+                  "value": "",
+                  "description": "Filter by state",
+                  "disabled": true
+                },
+                {
+                  "key": "city",
+                  "value": "",
+                  "description": "Filter by city",
+                  "disabled": true
+                },
+                {
+                  "key": "type",
+                  "value": "",
+                  "description": "Filter by institution type",
+                  "disabled": true
+                },
+                {
+                  "key": "orderBy",
+                  "value": "name",
+                  "description": "Field to order by"
+                },
+                {
+                  "key": "orderDirection",
+                  "value": "asc",
+                  "description": "Order direction (asc/desc)"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Educational Institution by ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}{{api_prefix}}/educational-institutions/{{institution_id}}",
+              "host": ["{{base_url}}"],
+              "path": ["{{api_prefix}}", "educational-institutions", "{{institution_id}}"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Educational Institutions by Country",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}{{api_prefix}}/educational-institutions/country/{{country_id}}?skip=0&take=20",
+              "host": ["{{base_url}}"],
+              "path": ["{{api_prefix}}", "educational-institutions", "country", "{{country_id}}"],
+              "query": [
+                {
+                  "key": "skip",
+                  "value": "0"
+                },
+                {
+                  "key": "take",
+                  "value": "20"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Create Educational Institution (Admin)",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{jwt_token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Test University\",\n  \"countryId\": \"{{country_id}}\",\n  \"state\": \"California\",\n  \"city\": \"Los Angeles\",\n  \"website\": \"https://www.testuniversity.edu\",\n  \"established\": 1985,\n  \"type\": \"public\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}{{api_prefix}}/educational-institutions",
+              "host": ["{{base_url}}"],
+              "path": ["{{api_prefix}}", "educational-institutions"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Update Educational Institution (Admin)",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{jwt_token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Updated University Name\",\n  \"website\": \"https://www.updated-university.edu\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}{{api_prefix}}/educational-institutions/{{institution_id}}",
+              "host": ["{{base_url}}"],
+              "path": ["{{api_prefix}}", "educational-institutions", "{{institution_id}}"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Delete Educational Institution (Admin)",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{jwt_token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}{{api_prefix}}/educational-institutions/{{institution_id}}",
+              "host": ["{{base_url}}"],
+              "path": ["{{api_prefix}}", "educational-institutions", "{{institution_id}}"]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Devices",
+      "item": [
+        {
+          "name": "Get All Devices",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}{{api_prefix}}/devices?skip=0&take=20&orderBy=createdAt&orderDirection=desc",
+              "host": ["{{base_url}}"],
+              "path": ["{{api_prefix}}", "devices"],
+              "query": [
+                {
+                  "key": "skip",
+                  "value": "0",
+                  "description": "Number of records to skip"
+                },
+                {
+                  "key": "take",
+                  "value": "20",
+                  "description": "Number of records to take"
+                },
+                {
+                  "key": "search",
+                  "value": "",
+                  "description": "Search term",
+                  "disabled": true
+                },
+                {
+                  "key": "type",
+                  "value": "",
+                  "description": "Filter by device type",
+                  "disabled": true
+                },
+                {
+                  "key": "manufacturer",
+                  "value": "",
+                  "description": "Filter by manufacturer",
+                  "disabled": true
+                },
+                {
+                  "key": "os",
+                  "value": "",
+                  "description": "Filter by operating system",
+                  "disabled": true
+                },
+                {
+                  "key": "browser",
+                  "value": "",
+                  "description": "Filter by browser",
+                  "disabled": true
+                },
+                {
+                  "key": "orderBy",
+                  "value": "createdAt",
+                  "description": "Field to order by"
+                },
+                {
+                  "key": "orderDirection",
+                  "value": "desc",
+                  "description": "Order direction (asc/desc)"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Device by ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}{{api_prefix}}/devices/{{device_id}}",
+              "host": ["{{base_url}}"],
+              "path": ["{{api_prefix}}", "devices", "{{device_id}}"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Devices by Type",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}{{api_prefix}}/devices/type/mobile?skip=0&take=20",
+              "host": ["{{base_url}}"],
+              "path": ["{{api_prefix}}", "devices", "type", "mobile"],
+              "query": [
+                {
+                  "key": "skip",
+                  "value": "0"
+                },
+                {
+                  "key": "take",
+                  "value": "20"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Create Device (Admin)",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{jwt_token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"type\": \"mobile\",\n  \"manufacturer\": \"Samsung\",\n  \"model\": \"Galaxy S24 Ultra\",\n  \"os\": \"Android\",\n  \"osVersion\": \"14\",\n  \"browser\": \"Chrome\",\n  \"browserVersion\": \"120.0\",\n  \"screenWidth\": 480,\n  \"screenHeight\": 854,\n  \"userAgent\": \"Mozilla/5.0 (Linux; Android 14; SM-S928B) AppleWebKit/537.36\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}{{api_prefix}}/devices",
+              "host": ["{{base_url}}"],
+              "path": ["{{api_prefix}}", "devices"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Update Device (Admin)",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{jwt_token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"osVersion\": \"14.1\",\n  \"browserVersion\": \"121.0\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}{{api_prefix}}/devices/{{device_id}}",
+              "host": ["{{base_url}}"],
+              "path": ["{{api_prefix}}", "devices", "{{device_id}}"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Delete Device (Admin)",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{jwt_token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}{{api_prefix}}/devices/{{device_id}}",
+              "host": ["{{base_url}}"],
+              "path": ["{{api_prefix}}", "devices", "{{device_id}}"]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "API Documentation",
+      "item": [
+        {
+          "name": "Get Swagger Documentation",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/docs",
+              "host": ["{{base_url}}"],
+              "path": ["api", "docs"]
+            }
+          },
+          "response": []
+        }
+      ]
+    }
+  ],
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "type": "text/javascript",
+        "exec": [
+          "// Set dynamic variables",
+          "if (!pm.collectionVariables.get('country_id')) {",
+          "    pm.collectionVariables.set('country_id', 'clq2j9x8r0000356lz8q9x8r0');",
+          "}",
+          "",
+          "if (!pm.collectionVariables.get('institution_id')) {",
+          "    pm.collectionVariables.set('institution_id', 'clq2j9x8r0000356lz8q9x8r1');",
+          "}",
+          "",
+          "if (!pm.collectionVariables.get('device_id')) {",
+          "    pm.collectionVariables.set('device_id', 'clq2j9x8r0000356lz8q9x8r2');",
+          "}"
+        ]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "type": "text/javascript",
+        "exec": [
+          "// Global test script for all requests",
+          "pm.test('Response should be JSON', function() {",
+          "    pm.response.to.be.json;",
+          "});",
+          "",
+          "pm.test('Response time should be less than 5000ms', function() {",
+          "    pm.expect(pm.response.responseTime).to.be.below(5000);",
+          "});",
+          "",
+          "// For successful responses, check if success field is true",
+          "if (pm.response.code >= 200 && pm.response.code < 300) {",
+          "    pm.test('Response should have success field as true', function() {",
+          "        const jsonData = pm.response.json();",
+          "        pm.expect(jsonData).to.have.property('success', true);",
+          "    });",
+          "",
+          "    pm.test('Response should have data field', function() {",
+          "        const jsonData = pm.response.json();",
+          "        pm.expect(jsonData).to.have.property('data');",
+          "    });",
+          "}"
+        ]
+      }
+    }
+  ]
+}
